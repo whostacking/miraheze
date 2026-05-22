@@ -1,6 +1,6 @@
 <header class="main-header">
         <nav class="main-nav">
-            <a href="/" rel="noopener noreferrer">
+            <a href="{{ "/" | relative_url }}" rel="noopener noreferrer">
                 <div class="logo">
                     <img src="assets/Miraheze-Logo.svg" height="30" alt="Miraheze logo" />
                     Miraheze
@@ -8,7 +8,7 @@
             </a>
             <div class="nav-links">
                 <!-- <a class="nav-link active" href="#">Features</a> -->
-                <a class="nav-link" href="https://communities.miraheze.org">Discover</a>
+                <a class="nav-link" href="{{ "/discover" | relative_url }}">Discover</a>
                 <a class="nav-link" href="https://meta.miraheze.org/wiki/Special:MyLanguage/Donate">Donate</a>
                 <a class="nav-link" href="https://meta.miraheze.org/wiki/Special:MyLanguage/Help_center">Support</a>
             </div>

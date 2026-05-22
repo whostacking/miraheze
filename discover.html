@@ -5,6 +5,10 @@ body_class: discover
 ---
 
 <style>
+.discover-landing {
+    margin-bottom: 3rem;
+}
+
 .discover-container .hero-title .text-highlight {
     border-radius: 3rem;
     background: var(--primary-dim);
@@ -156,15 +160,15 @@ body_class: discover
         pointer-events: none;
         opacity: 0.2;
         transition: opacity 0.5s;
-        transition-delay: 2s;
+        transition-delay: 1.5s;
 
         .sun {
-            animation: bloom 2s forwards;
+            animation: bloom 1s forwards;
         }
 
         .planet {
             transition: opacity 0.5s ease, translate 0.5s ease;
-            transition-delay: calc(1s + 0.2s + 0.05s * (sibling-index() - 1));
+            transition-delay: calc(0.8s + 0.05s * (sibling-index() - 1));
             
             @starting-style {
                 opacity: 0;
@@ -187,7 +191,7 @@ body_class: discover
         opacity: 1;
         content-visibility: visible;
         transition: opacity 0.5s, content-visibility 0.5s;
-        transition-delay: 2s;
+        transition-delay: 1.5s;
         
         @starting-style {
             opacity: 0;
@@ -271,9 +275,10 @@ body_class: discover
 	<div class="container tabber-container">
 		<ul class="tabnav">
 			<li><a href="#tab1">Gaming</a></li>
-			<li><a href="#tab2">Entertainment</a></li>
+			<li><a href="#tab2">Technology</a></li>
 		</ul>
 		<div class="tabcontent-wrapper">
+            <!-- gaming -->
 			<div class="tabcontent" id="tab1">
 				<div class="container showcase-grid">
                     {% include wiki_discover_grid.html
@@ -319,9 +324,38 @@ body_class: discover
                     %}
                 </div>
 			</div>
+
+            <!-- tech -->
 			<div class="tabcontent" id="tab2">
-				<h2>Why do we use it?</h2>
-				<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                <div class="container showcase-grid">
+                    {% include wiki_discover_grid.html
+                    title="AmpMod Wiki"
+                    image="assets/Miraheze Banner.png"
+                    description="AmpMod Wiki is a wiki about AmpMod, a modification of the Scratch programming language."
+                    link="https://ampmod.miraheze.org/"
+                    %}
+
+                    {% include wiki_discover_grid.html
+                    image="assets/Miraheze Banner.png"
+                    title="Rosetta Code"
+                    description="Rosetta Code is a Miraheze wiki aimed at documenting how the same programming task can be solved in different programming languages."
+                    link="https://rosettacode.org/"
+                    %}
+
+                    {% include wiki_discover_grid.html
+                    image="assets/Miraheze Banner.png"
+                    title="Snap! Wiki"
+                    description="The Snap! Wiki is a wiki about Snap! (Build Your Own Blocks). Snap! (formerly BYOB) is a visual programming-language inspired by Scratch, featuring more features than Scratch, such as first class procedures, lists, and sprites, and the ability to add blocks and reporters."
+                    link="https://snapwiki.miraheze.org/"
+                    %}
+
+                    {% include wiki_discover_grid.html
+                    image="assets/Miraheze Banner.png"
+                    title="The Linux Mint Community Wiki"
+                    description="The wiki for Linux Mint, a user-friendly operating system based on Ubuntu."
+                    link="https://mintguide.miraheze.org/"
+                    %}
+                </div>
 			</div>
 		</div>
 	</div>
@@ -392,11 +426,16 @@ body_class: discover
         border-radius: 3rem;
         background-color: #f6f6f6;
         transition: .25s background, .25s font-weight;
-    }
 
-    ul.tabnav li a:hover {
-        color: #000000;
-        text-decoration: none;
+        &:hover {
+            background: var(--color-base);
+            text-decoration: none;
+            animation: bouncebutton 0.3s ease-in-out forwards;
+
+            &:not(.active) {
+                color: var(--primary);
+            }
+        }
     }
 
     ul.tabnav li a.active {
