@@ -13,6 +13,8 @@
     --primary-soft: #fff5ad;
     --primary-selection: #ffc56e;
     --button-hover: rgba(255, 255, 25, 0.1);
+    --color-link: oklch(from var(--primary-dim) 0.6 c h);
+    --background-footer: var(--primary-soft);
 
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
@@ -20,6 +22,27 @@
 
     --font-headline: 'Plus Jakarta Sans', sans-serif;
     --font-body: 'Google Sans Flex', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #151515;
+        --surface: #1C1C1C;
+        --surface-container-low: #242424;
+        --surface-container: #2D2D2D;
+        --surface-container-high: #383838;
+        --surface-dim: #151515;
+        --surface-tint: #ffad42;
+        --color-base: #F5F3F2;
+        --primary: #ffaa42;
+        --primary-container: #4c3120;
+        --primary-dim: #ffad41;
+        --primary-soft: #9c6c1a;
+        --primary-selection: #70581b;
+        --button-hover: rgba(255, 214, 66, 0.1);
+        --color-link: oklch(from var(--primary-dim) 0.8 c h);
+        --background-footer: #49380b;
+    }
 }
 
 /* Base Styles */
@@ -121,13 +144,14 @@ img {
     margin: 0 auto;
     font-family: var(--font-headline);
     font-weight: 500;
+    position: relative;
 }
 
 .logo {
     font-family: "Ubuntu", var(--font-headline);
     font-size: 1.5rem;
     font-weight: 800;
-    color: #000;
+    color: var(--color-base);
     letter-spacing: -0.025em;
     display: flex;
     align-items: center;
@@ -137,6 +161,11 @@ img {
 .nav-links {
     display: none;
     align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @media (min-width: 768px) {
@@ -154,7 +183,7 @@ img {
 }
 
 .nav-link:hover {
-    color: oklch(from var(--primary-dim) 0.6 c h);
+    color: var(--color-link);
     background-color: var(--button-hover);
     animation: bouncebutton 0.3s ease-in-out forwards;
 }
@@ -336,6 +365,7 @@ img {
     font-size: 1.125rem;
     transition: all 0.25s;
     position: relative;
+    overflow: hidden;
 
     &::before {
         content: '';
@@ -423,7 +453,7 @@ img {
 
 .stats-count {
     font-weight: 700;
-    background: #e0e0e0;
+    background: var(--surface-container-high);
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
     border-radius: var(--radius-full);
@@ -456,7 +486,7 @@ img {
 
 /* Wave Divider */
 .wave-path-surface {
-    fill: var(--primary-soft);
+    fill: var(--background-footer);
 }
 
 @keyframes waveDividerAnimation {
@@ -769,7 +799,7 @@ img {
     }
 
     &::before {
-        background: var(--primary-soft);
+        background: var(--background-footer);
     }
 }
 
@@ -846,7 +876,7 @@ img {
 .footer-link:hover {
     opacity: 1;
     transform: scale(1.1);
-    color: oklch(from var(--primary-dim) 0.6 c h);
+    color: var(--color-link);
     background-color: var(--button-hover);
 }
 
@@ -861,7 +891,7 @@ img {
     width: 2rem;
     height: 2rem;
     border-radius: var(--radius-full);
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid oklch(from var(--color-base) l c h / 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -900,6 +930,10 @@ img {
     fill: currentColor;
     user-select: none;
     pointer-events: none;
+
+    @media (prefers-color-scheme: dark) {
+        filter: invert(1);
+    }
 }
 
 @media (max-width: 768px) {
