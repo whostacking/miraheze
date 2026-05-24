@@ -193,10 +193,15 @@ layout: default
 </section>
 
 <section class="beehive-section">
-    <div class="container section-header">
-        <h1 class="section-title">
-            Join the beehive
-        </h1>
+    <div class="container">
+        <div class="beehive-header-details">
+            <h1 class="section-title">
+                Join the hive
+            </h1>
+            <p class="section-subtitle">
+                Stay up to date with the latest news, updates, and community highlights from Miraheze.
+            </p>
+        </div>
 
         <div class="hex-grid">
             <a class="social-btn mastodon top" href="https://mastodon.social/@miraheze" title="Mastodon">
@@ -233,91 +238,3 @@ layout: default
         </div>
     </div>
 </section>
-
-<style>
-    .hex-grid {
-        --mirawidth: 150px;
-        --mirawidthspacing: 20px;
-        width: max-content;
-        margin: 2rem auto;
-        padding-right: var(--mirawidthspacing);
-        display: grid;
-        grid-template-columns: repeat(3, var(--mirawidth));
-        grid-template-rows: repeat(6, auto);
-        gap: var(--mirawidthspacing) 0;
-        grid-auto-flow: row;
-        grid-template-areas:
-            ". top ."
-            "left top right"
-            "left center right"
-            "leftbottom center rightbottom"
-            "leftbottom bottom rightbottom"
-            ". bottom .";
-
-        > * {
-            width: calc(var(--mirawidth) + var(--mirawidthspacing));
-            height: var(--mirawidth);
-            clip-path: polygon(25% 0%,
-                    75% 0%,
-                    100% 50%,
-                    75% 100%,
-                    25% 100%,
-                    0% 50%);
-            transition: all 0.3s;
-
-            &:not(.center) {
-                background-color: var(--color-link);
-            }
-
-            img {
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: contain;
-                padding: 2rem;
-            }
-
-            &:hover {
-                transform: scale(1.05);
-            }
-        }
-
-        > a > div {
-            width: 100%;
-            height: 100%;
-        }
-
-        @media (max-width: 768px) {
-            --mirawidth: 100px;
-            --mirawidthspacing: 15px;
-        }
-    }
-
-    .top {
-        grid-area: top;
-    }
-
-    .left {
-        grid-area: left;
-    }
-
-    .center {
-        grid-area: center;
-        background-color: #8e7650;
-    }
-
-    .leftbottom {
-        grid-area: leftbottom;
-    }
-
-    .bottom {
-        grid-area: bottom;
-    }
-
-    .rightbottom {
-        grid-area: rightbottom;
-    }
-
-    .right {
-        grid-area: right;
-    }
-</style>
