@@ -89,7 +89,7 @@ body {
         filter: saturate(1.5);
     }
 
-    &::after {
+    &.page-mp::after {
         position: absolute;
         content: '';
         top: 30px;
