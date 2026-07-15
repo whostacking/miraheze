@@ -172,6 +172,8 @@ img {
 .nav-links {
     display: none;
     align-items: center;
+    gap: 0.25rem;
+    margin-left: 0.5rem;
     flex: 1;
 }
 
@@ -198,7 +200,7 @@ img {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .25rem;
 }
 
 .btn-login {
@@ -208,7 +210,6 @@ img {
 @media (min-width: 1024px) {
     .btn-login {
         display: block;
-        margin-right: -10px;
     }
 }
 
