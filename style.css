@@ -88,6 +88,19 @@ body {
         mask-image: linear-gradient(to bottom, black 65%, transparent);
         filter: saturate(1.5);
     }
+
+    &::after {
+        position: absolute;
+        content: '';
+        top: 30px;
+        right: 0;
+        z-index: 0;
+        mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.3) 65%, transparent);
+        background: url(assets/buzzylanding.png) no-repeat right bottom;
+        background-size: auto 100%;
+        height: 70vh;
+        width: 100%;
+    }
 }
 
 h1,
@@ -602,6 +615,11 @@ img {
     .features-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+    
+    .showcase-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr))!important;
+        gap: 1rem!important;
+    }
 }
 
 .pay-section {
@@ -639,11 +657,28 @@ img {
     border-radius: 3rem;
     overflow: hidden;
     height: 100%;
-    transition: all 0.3s;
+    transition: all 0.25s;
+    position: relative;
 
     &:hover {
         /* transform: translateY(-5px); */
         background-color: var(--primary-soft);
+
+        > .material-symbols-outlined {
+            transform: scale(7) rotate(10deg);
+        }
+    }
+
+    > .material-symbols-outlined {
+        pointer-events: none;
+        transform: scale(7);
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        opacity: 0.3;
+        mix-blend-mode: overlay;
+        mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 60%);
+        transition: .25s transform;
     }
 
     .card-body {
@@ -669,10 +704,6 @@ img {
         font-size: 1.5rem;
         font-weight: 700;
         color: var(--color-base);
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        align-items: center;
     }
 
     /* .badge {
