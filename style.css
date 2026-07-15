@@ -26,7 +26,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #151515;
+        --background: #0b0701;
         --surface: #1C1C1C;
         --surface-container-low: #242424;
         --surface-container: #2D2D2D;
@@ -82,7 +82,7 @@ body {
         position: absolute;
         content: '';
         inset: 0;
-        z-index: 0;
+        z-index: -1;
         background: radial-gradient(70% 50% at 18% 0%, rgba(255, 138, 90, 0.1) 0%, transparent 55%), radial-gradient(65% 50% at 82% 0%, rgba(255, 190, 100, 0.13) 0%, transparent 55%), radial-gradient(85% 45% at 50% 2%, rgba(255, 156, 90, 0.08) 0%, transparent 60%), radial-gradient(60% 40% at 35% 38%, rgba(255, 90, 90, 0.05) 0%, transparent 60%), rgb(16, 16, 16);
         user-select: none;
         mask-image: linear-gradient(to bottom, black 65%, transparent);
@@ -92,14 +92,16 @@ body {
     &.page-mp::after {
         position: absolute;
         content: '';
-        top: 30px;
+        top: 0px;
         right: 0;
-        z-index: 0;
         mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.3) 65%, transparent);
-        background: url(assets/buzzylanding.png) no-repeat right bottom;
-        background-size: auto 100%;
-        height: 70vh;
+        background: url(assets/hero-clouds.jpg) no-repeat center bottom;
+        background-size: cover;
+        mix-blend-mode: overlay;
+        filter: hue-rotate(207deg);
+        height: 100%;
         width: 100%;
+        pointer-events: none;
     }
 }
 
@@ -240,6 +242,7 @@ img {
 
     &:hover {
         background-color: var(--primary-dim);
+        color: black;
         animation: bouncebutton 0.3s ease-in-out forwards;
     }
 
@@ -272,30 +275,33 @@ img {
 
     &:hover {
         background-color: var(--primary-dim);
+        color: black;
         animation: bouncebutton 0.3s ease-in-out forwards;
     }
 }
 
 /* Hero Section */
 .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-top: 2rem;
     padding-bottom: 6rem;
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 600px;
+    max-height: 100svh;
 }
 
-.hero-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* .hero-container {
     gap: 3rem;
-}
+} */
 
 @media (min-width: 768px) {
-    .hero-container {
+    /* .hero-container {
         flex-direction: row;
-    }
+    } */
 
     .hero-content {
         width: 75%;
@@ -303,12 +309,17 @@ img {
 }
 
 .hero-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: auto;
     z-index: 10;
 }
 
 .hero-title {
-    font-size: 3rem;
-    font-weight: 800;
+    font-size: 4rem;
+    /* font-weight: 800; */
     color: var(--color-base);
     line-height: 1.1;
     margin-bottom: 0.5rem;
@@ -372,7 +383,6 @@ img {
 }
 
 .btn-hero-primary {
-    color: #FFDEA5;
     background-color: var(--primary-soft);
     color: var(--color-base);
     padding: 1rem 2rem;
@@ -397,6 +407,7 @@ img {
         transform: translateY(-2px);
         background: var(--primary-dim);
         box-shadow: 0 20px 25px -5px rgba(110, 60, 0, 0.2);
+        color: black;
 
         &::before {
             opacity: 1;
@@ -616,7 +627,7 @@ img {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .showcase-grid {
+    .page-mp .showcase-grid {
         grid-template-columns: repeat(6, minmax(0, 1fr))!important;
         gap: 1rem!important;
     }
@@ -991,7 +1002,8 @@ img {
         left: 0;
         width: 30vw;
         aspect-ratio: 1;
-        background: oklch(from var(--primary-dim) l c h / 0.5);
+        background: oklch(from var(--primary-soft) l c h / 0.3);
+        filter: blur(5px);
         /* linear-gradient(135deg, var(--primary-dim) 30%, var(--surface-tint)); */
 
         &.right {
