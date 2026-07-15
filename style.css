@@ -8,22 +8,36 @@
 }
 
 :root {
-    --background: #1d160b;
-    --surface: #1C1C1C;
-    --surface-container-low: #242424;
-    --surface-container: #2D2D2D;
-    --surface-container-high: #383838;
-    --surface-dim: #151515;
-    --surface-tint: #ffad42;
-    --color-base: #F5F3F2;
-    --primary: #ffaa42;
-    --primary-container: #4c3120;
-    --primary-dim: #ffad41;
-    --primary-soft: #5D4200;
-    --primary-selection: #70581b;
-    --button-hover: rgba(255, 214, 66, 0.1);
-    --color-link: oklch(from var(--primary-dim) 0.8 c h);
-    --background-footer: #30240C;
+    /* Brand */
+    --primary: oklch(0.77 0.16 73);
+
+    /* Text */
+    --color-base: oklch(0.96 0.01 80);
+
+    /* Backgrounds */
+    --background: oklch(19.945% 0.02478 71.262);
+    --background-footer: var(--color-surface-1);
+
+    /* Surface hierarchy */
+    --color-surface-1: oklch(from var(--background) calc(l + 0.02) calc(c * 1.1) h);
+    --color-surface-2: oklch(from var(--background) calc(l + 0.04) calc(c * 1.2) h);
+    --color-surface-3: oklch(from var(--background) calc(l + 0.06) calc(c * 1.3) h);
+    --color-surface-4: oklch(from var(--background) calc(l + 0.08) calc(c * 1.35) h);
+    --color-surface-5: oklch(from var(--background) calc(l + 0.10) calc(c * 1.4) h);
+
+    /* Accent surfaces */
+    --primary-container: oklch(from var(--primary) 0.32 0.08 h);
+    --primary-soft: oklch(from var(--primary) 0.42 0.11 h);
+    --primary-dim: oklch(from var(--primary) 0.72 0.14 h);
+
+    /* States */
+    --color-surface-1-tint: var(--primary);
+
+    --button-hover: oklch(from var(--primary) l c h / 0.10);
+    --primary-selection: oklch(from var(--primary) 0.50 0.10 h);
+
+    /* Links */
+    --color-link: oklch(from var(--primary) 0.82 0.16 h);
 }
 
 /* Base Styles */
@@ -59,22 +73,20 @@ body {
     font-family: var(--font-body);
     line-height: 1.5;
 
-    &::before {
+    &:not(.page-mp)::before {
         position: absolute;
         content: '';
         inset: 0;
-        z-index: -1;
-        background: radial-gradient(70% 50% at 18% 0%, rgba(255, 138, 90, 0.1) 0%, transparent 55%), radial-gradient(65% 50% at 82% 0%, rgba(255, 190, 100, 0.13) 0%, transparent 55%), radial-gradient(85% 45% at 50% 2%, rgba(255, 156, 90, 0.08) 0%, transparent 60%), radial-gradient(60% 40% at 35% 38%, rgba(255, 90, 90, 0.05) 0%, transparent 60%), rgb(16, 16, 16);
+        background: radial-gradient(70% 50% at 18% 0%, rgba(255, 138, 90, 0.1) 0%, transparent 55%), radial-gradient(65% 50% at 82% 0%, rgba(255, 190, 100, 0.13) 0%, transparent 55%), radial-gradient(85% 45% at 50% 2%, rgba(255, 156, 90, 0.08) 0%, transparent 60%), radial-gradient(60% 40% at 35% 38%, rgba(255, 90, 90, 0.05) 0%, transparent 60%), transparent;
         user-select: none;
         mask-image: linear-gradient(to bottom, black 65%, transparent);
         filter: saturate(1.5);
     }
 
-    &.page-mp::after {
+    &.page-mp::before {
         position: absolute;
         content: '';
-        top: 0px;
-        right: 0;
+        inset: 0;
         mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.3) 65%, transparent);
         background: url(assets/hero-clouds.jpg) no-repeat center bottom;
         background-size: cover;
@@ -132,7 +144,7 @@ img {
 
 /* Header & Nav */
 .main-header {
-    /* background-color: oklch(from var(--surface-container-low) l c h / 0.5); */
+    /* background-color: oklch(from var(--color-surface-2) l c h / 0.5); */
     backdrop-filter: blur(16px);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -462,7 +474,7 @@ img {
 
 .stats-count {
     font-weight: 700;
-    background: var(--surface-container-high);
+    background: var(--color-surface-4);
     padding: 0.25rem 0.5rem;
     margin-right: 0.25rem;
     border-radius: var(--radius-full);
@@ -646,7 +658,7 @@ img {
 }
 
 .showcase-card {
-    background-color: var(--surface-container-high);
+    background-color: var(--color-surface-3);
     border-radius: 3rem;
     overflow: hidden;
     height: 100%;
@@ -757,8 +769,8 @@ img {
 }
 
 .feature-card {
-    background: var(--surface-container-high);
-    /* background-color: oklch(from var(--surface-container-high) l c h / 0.8);
+    background: var(--color-surface-4);
+    /* background-color: oklch(from var(--color-surface-4) l c h / 0.8);
     backdrop-filter: blur(10px); */
     padding: 2rem;
     border-radius: 3rem;
@@ -956,8 +968,8 @@ img {
 }
 
 .social-icon {
-    width: 1rem;
-    height: 1rem;
+    /* width: 1rem;
+    height: 1rem; */
     fill: currentColor;
     user-select: none;
     pointer-events: none;
@@ -986,7 +998,7 @@ img {
         aspect-ratio: 1;
         background: oklch(from var(--primary-soft) l c h / 0.3);
         filter: blur(5px);
-        /* linear-gradient(135deg, var(--primary-dim) 30%, var(--surface-tint)); */
+        /* linear-gradient(135deg, var(--primary-dim) 30%, var(--color-surface-1-tint)); */
 
         &.right {
             left: unset !important;
@@ -1036,7 +1048,6 @@ img {
 
 .hex-grid {
     --mirawidth: 130px;
-    --mirawidthspacing: 20px;
     width: 100%;
     justify-content: center;
     margin-top: 6rem;
@@ -1064,25 +1075,25 @@ img {
         ". bottom ."; */
 
     >* {
-        width: calc(var(--mirawidth) + var(--mirawidthspacing));
-        height: var(--mirawidth);
-        clip-path: polygon(25% 0%,
-                75% 0%,
-                100% 50%,
-                75% 100%,
-                25% 100%,
-                0% 50%);
+        width: var(--mirawidth);
+        height: calc(var(--mirawidth) - 20px);
+        clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
         transition: all 0.3s;
 
         &:not(.center) {
-            background-color: var(--color-link);
+            background-color: var(--color-surface-5);
+        }
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         img {
-            width: 100% !important;
-            height: 100% !important;
+            max-width: 60px !important;
+            max-height: 60px !important;
             object-fit: contain;
-            padding: 2rem;
         }
 
         &:hover {
@@ -1155,6 +1166,24 @@ img {
 
         .beehive-header-details {
             max-width: unset!important;
+        }
+    }
+}
+
+.makeyourown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .5rem;
+    align-items: center;
+    margin: 2rem auto 0;
+    background: var(--color-surface-2);
+    border-radius: 3rem;
+    padding: 2rem 2rem;
+
+    .makeyourown-header {
+        .section-title {
+            margin-bottom: unset!important;
         }
     }
 }
